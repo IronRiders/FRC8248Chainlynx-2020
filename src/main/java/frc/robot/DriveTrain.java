@@ -42,14 +42,7 @@ public class DriveTrain {
         rightMotor1 = new VictorSP(rightPort1);
         rightMotor2 = new VictorSP(rightPort2);
 
-                //cannot resolve break
-        // leftMotor1.setIdleMode(IdleMode.kBrake);
-        // leftMotor2.setIdleMode(IdleMode.kBrake);
-        // rightMotor1.setIdleMode(IdleMode.kBrake);
-        // rightMotor2.setIdleMode(IdleMode.kBrake);
-            //Cannot slave PWMs
-        // leftMotor2.follow(leftMotor1);
-        // rightMotor2.follow(rightMotor1);
+           
     }
 
     public void updateSpeed(final ThrottlePosition throttlePosition) {
@@ -116,7 +109,7 @@ public class DriveTrain {
         scaledY = scaledY * throttleDirectionConstant * (stopDriveMotors ==false ? (throttle2) : 0.00);
 
 
-        final double right = ((-scaledX - scaledY) * -1);// +throttlePosition.z; //why plus throttle z?
+        final double right = ((-scaledX - scaledY) * -1);// +throttlePosition.z; //why plus throttle z?//dunno, just leave it for now
         final double left = (scaledY - scaledX) * -1;
     }
        

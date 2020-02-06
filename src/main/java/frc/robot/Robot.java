@@ -25,10 +25,8 @@ public class Robot extends TimedRobot {
 
   private boolean isDriverControlling;
   private double matchTime;
-  private Boolean endgameInit;
+  private Boolean endgameInit;//if this giving an error ignore it
 
- 
- 
 
   public final DriveTrain driveTrain = new DriveTrain(LEFT_DRIVETRAIN_1, LEFT_DRIVETRAIN_2, RIGHT_DRIVETAIN_1,
       RIGHT_DRIVETAIN_2, GYRO_PORT);
@@ -39,23 +37,14 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     driveTrain.robotDisArmed();
+    
   }
   @Override
   public void robotPeriodic() {
     driveTrain.robotArmed();
+
   }
-  /**
-   * This autonomous (along with the chooser code above) shows how to select
-   * between different autonomous modes using the dashboard. The sendable chooser
-   * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
-   * remove all of the chooser code and uncomment the getString line to get the
-   * auto name from the text box below the Gyro
-   *
-   * <p>
-   * You can add additional auto modes by adding additional comparisons to the
-   * switch structure below with additional strings. If using the SendableChooser
-   * make sure to add them to the chooser code above as well.
-   */
+ 
   @Override
   public void autonomousInit() {
 
@@ -64,14 +53,19 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
       //Hey this is fun
-    // joystick1.listen();
-    // joystick2.listen();
+      //Get back to work
+      //No
+      //Stop having conversations in the code
+      //Both of us:
+      //No
+    
   }
 
 
   @Override
   public void teleopInit() {
     isDriverControlling = true;
+
   }
 
   @Override
