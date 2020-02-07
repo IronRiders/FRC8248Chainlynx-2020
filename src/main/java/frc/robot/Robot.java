@@ -9,10 +9,11 @@ package frc.robot;
 
 import static frc.robot.Ports.*;
 
-import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cameraserver.CameraServer;//Leave this
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation;//Leave this
 // import com.analog.adis16448.frc.ADIS16448_IMU; // Gyro import, leave in
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,7 +25,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 public class Robot extends TimedRobot {
 
   private boolean isDriverControlling;
-  private double matchTime;
+  private double matchTime;//undefined right now
   private Boolean endgameInit;//if this giving an error ignore it
 
 
@@ -36,12 +37,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    driveTrain.robotDisArmed();
-    
+    driveTrain.robotDisArmed();//igonore this
+
   }
   @Override
   public void robotPeriodic() {
-    driveTrain.robotArmed();
+    driveTrain.robotArmed();//ignore this
 
   }
  
@@ -56,8 +57,8 @@ public class Robot extends TimedRobot {
       //Get back to work
       //No
       //Stop having conversations in the code
-      //Both of us:
       //No
+      //sigh
     
   }
 
@@ -93,7 +94,8 @@ public class Robot extends TimedRobot {
 
   
   public void changeDriverControl() {
-    this.isDriverControlling = !isDriverControlling;
+  this.isDriverControlling = !isDriverControlling;
+  
   }
 }
 
