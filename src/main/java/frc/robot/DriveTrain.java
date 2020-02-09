@@ -74,7 +74,7 @@ public class DriveTrain {
         leftMotor2.set(scaledY + scaledX);
         rightMotor2.set(scaledY + scaledX);
 
-        // WACK CODE STARTS HER
+        // WACK CODE STARTS HERE
     
         double throttle1 = scaledZ * -1.00; // isaac helped fix the broken code (ishan messed up the sig figs)
         // double throttle1 = 1.00;
