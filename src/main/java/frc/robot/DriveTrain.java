@@ -70,10 +70,6 @@ public class DriveTrain {
         if (throttlePosition.y < 0)
             scaledY = -scaledY;
 
-        leftMotor1.set(scaledY + scaledX);
-        rightMotor1.set(scaledY + scaledX);
-        leftMotor2.set(scaledY + scaledX);
-        rightMotor2.set(scaledY + scaledX);
 
         // WACK CODE STARTS HERE
     
@@ -118,6 +114,11 @@ public class DriveTrain {
 
         final double right = ((-scaledX - scaledY) * -1);// +throttlePosition.z; //why plus throttle z?
         final double left = (scaledY - scaledX) * -1;
+
+        leftMotor1.set(left);
+        rightMotor1.set(right);
+        leftMotor2.set(left);
+        rightMotor2.set(right);
     }
        
 
