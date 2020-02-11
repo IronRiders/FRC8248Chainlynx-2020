@@ -27,9 +27,7 @@ public class Robot extends TimedRobot {
   private double matchTime;
   private Boolean endgameInit;
 
-   double getMatchTime() {
-     return matchTime;
-   }
+ 
  
 
   public final DriveTrain driveTrain = new DriveTrain(LEFT_DRIVETRAIN_1, LEFT_DRIVETRAIN_2, RIGHT_DRIVETAIN_1,
@@ -40,8 +38,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    CameraServer.getInstance().startAutomaticCapture();
-    CameraServer.getInstance().startAutomaticCapture();
+    driveTrain.robotDisArmed();
   }
   @Override
   public void robotPeriodic() {
@@ -110,3 +107,4 @@ public class Robot extends TimedRobot {
     this.isDriverControlling = !isDriverControlling;
   }
 }
+

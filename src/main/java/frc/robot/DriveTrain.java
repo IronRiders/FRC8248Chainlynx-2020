@@ -14,7 +14,7 @@ public class DriveTrain {
     public double VelocityCheck;
     public double speedbrake;
 
-    private boolean throttleMode = true;//formally slowSpeed, side note we're calling the default spped baby mode, outreach mode, or rookie mode
+    private boolean throttleMode = true;
     private boolean stopDriveMotors;
 
     public boolean Brakes;
@@ -27,6 +27,7 @@ public class DriveTrain {
     public boolean throttleForward = true;
     public boolean velocityNeverToExcede = false;
     public boolean velocityToTurn;
+    public boolean arming;
    
     
     private int counter = 0;//the hell does this do?
@@ -76,7 +77,7 @@ public class DriveTrain {
 
         // WACK CODE STARTS HERE
     
-        double throttle1 = scaledZ * -1.00; // isaac helped fix the broken code (ishan messed up the sig figs)
+        double throttle1 = scaledZ * -1.00; 
         // double throttle1 = 1.00;
         double throttle2 = throttleMode ? ((throttle1 + 1.00) / 2.00) : 0.70; // Throttle as a value between 1
                                                                                         // and 2
@@ -108,20 +109,12 @@ public class DriveTrain {
         SmartDashboard.putNumber("raw data/Zraw", throttlePosition.z);
         SmartDashboard.putBoolean("Alarms/VNE", velocityNeverToExcede);
         SmartDashboard.putBoolean("Alarms/V1", velocityToTurn);
-        //SmartDashboard.putBoolean("status/RobotArmed", masterSafteyOff);
-        // SmartDashboard.putBoolean("BrakesIndicator",Brakes);
-        // SmartDashboard.putNumber
-        // VelocityCheck = (Brakes == true)?(speedbrake):throttle2;
+        SmartDashboard.putBoolean("status/RobotArmed", arming);
+      
 
         scaledX = (scaledX * 0.5 * (stopDriveMotors==false ? (throttle2) : 0.00));
         scaledY = scaledY * throttleDirectionConstant * (stopDriveMotors ==false ? (throttle2) : 0.00);
 
-        // if (throttleMode == false) {
-        // scaledX = scaledX * (drivingOffSpeed ? 0.27 : (throttle1+1.00));//note to
-        // self: default is .5 , .75 I assumed the they were proportinal so sclaed it by
-        // a factor of 40/7
-        // scaledY = scaledY * (drivingOffSpeed ? 0.40 : (throttle1+1.00));
-        // }
 
         final double right = ((-scaledX - scaledY) * -1);// +throttlePosition.z; //why plus throttle z?
         final double left = (scaledY - scaledX) * -1;
@@ -133,7 +126,12 @@ public class DriveTrain {
         SmartDashboard.putBoolean("status/LowSpeed", throttleMode);
     }
 
-
+    public void robotArmed(){
+        arming = true;
+    }
+    public void robotDisArmed(){
+        arming = false;
+    }
 
     public void setThrottleDirectionConstant() {
         throttleDirectionConstant *= -1;
@@ -141,13 +139,6 @@ public class DriveTrain {
         SmartDashboard.putBoolean("status/foward", throttleForward);
     }
 
-    //Resolve
-    // public void stopDriveMotors() {
-    //   stopDriveMotors=true;
-    // }
-    // public void restartDriveMotors(){
-    //   stopDriveMotors=false;
-    // }
 
     public void setDrivingOffSpeed() {
         drivingOffSpeed = !drivingOffSpeed;
