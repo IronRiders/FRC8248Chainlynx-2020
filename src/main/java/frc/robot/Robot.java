@@ -47,6 +47,10 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     CameraServer.getInstance().startAutomaticCapture();
     CameraServer.getInstance().startAutomaticCapture();
+    //joystick buttons
+    joystick1.addButton(1, driveTrain::setThrottleDirectionConstant);
+    joystick1.addButton(3, driveTrain::togglethrottleMode);
+
   }
   /**
    * This autonomous (along with the chooser code above) shows how to select
