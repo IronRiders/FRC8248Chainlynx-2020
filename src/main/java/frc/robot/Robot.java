@@ -37,12 +37,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    driveTrain.robotDisArmed();//igonore this
+  
 
   }
   @Override
   public void robotPeriodic() {
-    driveTrain.robotArmed();//ignore this
+   
 
   }
  

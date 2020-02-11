@@ -86,24 +86,13 @@ public class DriveTrain {
 
         velocityNeverToExcede = (thrust1 >= 85.00) ? true : false;
         velocityToTurn = (thrust1 > 20.00) ? true : false;
-        masteralarm = (throttle3 <= 20.00)
-                || ((velocityNeverToExcede == true) || ((revrSpeedWarn == true) && (RvsThrottleWarn == true)));
-        RvsThrottleWarn = ((throttleForward == false) && (throttleMode == true)) ? /* (thrust1 >= 60.00)? */ (true)
-                : (false);
-        revrSpeedWarn = ((throttle3 >= 55.00) && (throttleForward == false) ? (revrSpeedWarn = true)
-                : (revrSpeedWarn = false));
-        SmartDashboard.putBoolean("Alarms/RvsOverSpeed", revrSpeedWarn);
-        SmartDashboard.putBoolean("Alarms/masteralarm", masteralarm);
+      
         SmartDashboard.putNumber("status/throttlePrime", throttle3);
-        SmartDashboard.putBoolean("Alarms/RvsThrottleWarn",RvsThrottleWarn);
         SmartDashboard.putNumber("status/thrust", thrust1);
         SmartDashboard.putNumber("raw data/Xraw", throttlePosition.x);
         SmartDashboard.putNumber("raw data/Yraw", throttlePosition.y);
         SmartDashboard.putNumber("raw data/Zraw", throttlePosition.z);
-        SmartDashboard.putBoolean("Alarms/VNE", velocityNeverToExcede);
-        SmartDashboard.putBoolean("Alarms/V1", velocityToTurn);
-        SmartDashboard.putBoolean("status/RobotArmed", arming);
-      
+       
 
         scaledX = (scaledX * 0.5 * (stopDriveMotors==false ? (throttle2) : 0.00));
         scaledY = scaledY * throttleDirectionConstant * (stopDriveMotors ==false ? (throttle2) : 0.00);
@@ -119,23 +108,10 @@ public class DriveTrain {
         SmartDashboard.putBoolean("status/LowSpeed", throttleMode);
     }
 
-    public void robotArmed(){
-        arming = true;
-    }
-    public void robotDisArmed(){
-        arming = false;
-    }
-
     public void setThrottleDirectionConstant() {
         throttleDirectionConstant *= -1;
         throttleForward = !throttleForward;
         SmartDashboard.putBoolean("status/foward", throttleForward);
     }
-
-
-    public void setDrivingOffSpeed() {
-        drivingOffSpeed = !drivingOffSpeed;
-        SmartDashboard.putBoolean("DB/String 7", drivingOffSpeed);
-    } 
 
 }
