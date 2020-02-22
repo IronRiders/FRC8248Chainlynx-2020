@@ -29,8 +29,6 @@ public class DriveTrain {
     public boolean velocityToTurn;
     public boolean arming;
    
-    
-    private int counter = 0;//the hell does this do?
 
     public int throttleDirectionConstant = 1;
     
