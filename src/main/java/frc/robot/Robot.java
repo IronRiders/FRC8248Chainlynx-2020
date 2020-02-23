@@ -35,6 +35,8 @@ public class Robot extends TimedRobot {
   private final LambdaJoystick joystick1 = new LambdaJoystick(0, driveTrain::updateSpeed);
   private final LambdaJoystick joystick2 = new LambdaJoystick(1);
 
+  //private MotionProfiling path = new MotionProfiling(driveTrain, setupLeft, setupRight); (Setup left/right are path/trajectory files)
+
   @Override
   public void robotInit() {
   

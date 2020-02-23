@@ -1,14 +1,18 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.VictorSP;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.LambdaJoystick.ThrottlePosition;
+import com.analog.adis16448.frc.ADIS16448_IMU;
 
 public class DriveTrain {
-    private final VictorSP leftMotor1;
-    private final VictorSP rightMotor1;
-    private final VictorSP leftMotor2;
-    private final VictorSP rightMotor2;
+    private final VictorSPX leftMotor1;
+    private final VictorSPX rightMotor1;
+    private final VictorSPX leftMotor2;
+    private final VictorSPX rightMotor2;
+    public ADIS16448_IMU gyro;
+    public ADIS16448_IMU angleY;
 
     public double throttleInput;
     public double VelocityCheck;
@@ -35,10 +39,10 @@ public class DriveTrain {
 
     public DriveTrain(final int leftPort1, final int leftPort2, final int rightPort1, final int rightPort2,
             final int gyroPortNumber) {
-        leftMotor1 = new VictorSP(leftPort1);
-        leftMotor2 = new VictorSP(leftPort2);
-        rightMotor1 = new VictorSP(rightPort1);
-        rightMotor2 = new VictorSP(rightPort2);
+        leftMotor1 = new VictorSPX(leftPort1);
+        leftMotor2 = new VictorSPX(leftPort2);
+        rightMotor1 = new VictorSPX(rightPort1);
+        rightMotor2 = new VictorSPX(rightPort2);
 
            
     }
@@ -61,10 +65,10 @@ public class DriveTrain {
         if (throttlePosition.y < 0)
             scaledY = -scaledY;
 
-        leftMotor1.set(scaledY + scaledX);
-        rightMotor1.set(scaledY + scaledX);
-        leftMotor2.set(scaledY + scaledX);
-        rightMotor2.set(scaledY + scaledX);
+        leftMotor1.set(ControlMode.PercentOutput, scaledY + scaledX);
+        rightMotor1.set(ControlMode.PercentOutput, scaledY + scaledX);
+        leftMotor2.set(ControlMode.PercentOutput, scaledY + scaledX);
+        rightMotor2.set(ControlMode.PercentOutput, scaledY + scaledX);
 
         // WACK CODE STARTS HeRe
     
@@ -99,7 +103,21 @@ public class DriveTrain {
         final double right = ((-scaledX - scaledY) * -1);// +throttlePosition.z; //why plus throttle z?//dunno, just leave it for now
         final double left = (scaledY - scaledX) * -1;
     }
+
+    public void autoUpdateSpeed(double left, double right) {
+        leftMotor1.set(ControlMode.PercentOutput, left);
+        rightMotor1.set(ControlMode.PercentOutput, right);
+        leftMotor2.follow(leftMotor1);
+        rightMotor2.follow(rightMotor1);
+    }
        
+    public VictorSPX getLeftMotor() {
+        return leftMotor1;
+    }
+
+    public VictorSPX getRightMotor() {
+        return rightMotor1;
+    }
 
     public void togglethrottleMode() {
         throttleMode = !throttleMode;
@@ -110,6 +128,16 @@ public class DriveTrain {
         throttleDirectionConstant *= -1;
         throttleForward = !throttleForward;
         SmartDashboard.putBoolean("status/foward", throttleForward);
+    
     }
+
+	public ADIS16448_IMU getGyro() {
+		return gyro;
+	}
+
+    public ADIS16448_IMU getGyroAngleY(){
+        return angleY;
+    }
+
 
 }
